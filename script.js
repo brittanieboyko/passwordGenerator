@@ -6,14 +6,14 @@ function createPassword() {
     var uppercaseChars = confirm("Do you want to include uppercase characters in your password?");
 
     if (passwordLength >= 8 && passwordLength <= 128) {
-        var password = " ";
+        var password = "";
         var allCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!#$%&'()*+,-./:;<=>?@[\]^_`{|}~";
 
         for (var i = 0; i < passwordLength; i++) {
            password = password + allCharacters.charAt(Math.floor(Math.random() * passwordLength));
         }
 
-        console.log(password);
+        window.document.getElementById("textArea").innerHTML = password;
     };
 };
  
