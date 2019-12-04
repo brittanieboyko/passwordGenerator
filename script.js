@@ -2,17 +2,21 @@ var generatePasswordEl = document.querySelector(".genPasswordButton");
 var passwordLength;
 var charSetString;
 
-
 function getPasswordLength() {
-    passwordLength = prompt("How long do you want your password to be?", "8");
+    passwordLength = parseInt(prompt("How long do you want your password to be?", "8"));
+    
+    validatePasswordPrompt(passwordLength);
+};
 
-    if (passwordLength < 8 || passwordLength > 128) {
-
-        alert("You must enter a password length between 8 and 128 characters");
-
-    } else {
+function validatePasswordPrompt(number){
+    if (number <= 128 && number >= 8) {
         determineCharacterSet();
-    };
+    } else if (isNaN(number)) {
+        alert("Please enter a valid number");
+    } else {
+        alert("Please enter a number from 8 to 128");
+        getPasswordLength();
+   }
 };
 
 function determineCharacterSet() {
@@ -28,12 +32,12 @@ function determineCharacterSet() {
         [specialCharPrompt, "!\"#$%&'()*+,-./:;<=>?@["],
     ]
     
-    
     charSets.forEach(function(charSet) {
         if (charSet[0] === true) {
             charSetString = charSetString + charSet[1];
         }
     });
+
     validateUserSelection();
 };
 
@@ -50,10 +54,10 @@ function createPassword() {
 
     for (var i = 0; i <= passwordLength; i++) {
         password = password + charSetString.charAt(Math.floor(Math.random() * passwordLength));
-
     }
+
     window.document.getElementById("textArea").innerHTML = password;
 
-}
+};
 
 generatePasswordEl.addEventListener("click", getPasswordLength);
