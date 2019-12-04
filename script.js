@@ -1,3 +1,5 @@
+
+
 var charSetLower = "abcdefghijklmnopqrstuvwxyz";
 var charSetUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var charSetNumbers = "0123456789";
@@ -15,25 +17,26 @@ function createPassword() {
         var uppercaseCharPrompt = confirm("Would you like to include uppercase characters in your password?");
         var numbersCharPrompt = confirm("Would you like to include numbers characters in your password?");
         var specialCharPrompt = confirm("Would you like to include special characters in your password?");
-
-        var password = "";
-        var charSet = "";
         
-        if (lowercaseCharPrompt === true) {
-            charSet = charSet + charSetLower;
-        }
-        if (uppercaseCharPrompt === true) {
-            charSet = charSet + charSetUpper;
-        }
-        if (numbersCharPrompt === true) {
-            charSet = charSet + charSetNumbers;
-        }
-        if (specialCharPrompt === true) {
-            charSet = charSet + charSetSpecial;
-        }
+        var charSets = [
+            ["abcdefghijklmnopqrstuvwxyz", lowercaseCharPrompt],
+            ["ABCDEFGHIJKLMNOPQRSTUVWXYZ", uppercaseCharPrompt],
+            ["0123456789", numbersCharPrompt],
+            ["!\"#$%&'()*+,-./:;<=>?@[", specialCharPrompt],
+        ]
+        
+        var charSetString = "";
+        var password = "";
+        
+        charSets.forEach(function(charSet) {
+            if (charSet[1] === true) {
+                charSetString += charSet[0];
+            }
+        });
 
-        for (var i = 0; i < passwordLength; i++) {
-            password = password + charSet.charAt(Math.floor(Math.random() * passwordLength));
+        for (var i = 0; i <= passwordLength; i++) {
+            password = password + charSetString.charAt(Math.floor(Math.random() * passwordLength));
+            console.log(i);
         }
 
         window.document.getElementById("textArea").innerHTML = password;
