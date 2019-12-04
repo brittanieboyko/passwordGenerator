@@ -1,4 +1,6 @@
-var generatePasswordEl = document.querySelector(".genPasswordButton");
+var generatePasswordEl = document.querySelector("#genPasswordButton");
+var textAreaEl = document.querySelector("#textArea");
+var copyToClipEl = document.querySelector("#copyToClipButton")
 var passwordLength;
 var charSetString = "";
 
@@ -57,8 +59,15 @@ function createPassword() {
         password = password + charSetString.charAt(Math.floor(Math.random() * passwordLength));
     }
 
-    window.document.getElementById("textArea").innerHTML = password;
+    textAreaEl.innerHTML = password;
 
 };
 
+function copyPassword() {
+    textAreaEl.select();
+    textAreaEl.setSelectionRange(0, 99999)
+    document.execCommand("copy");
+  }
+
 generatePasswordEl.addEventListener("click", getPasswordLength);
+copyToClipEl.addEventListener("click", copyPassword);
