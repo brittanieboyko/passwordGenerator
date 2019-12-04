@@ -1,10 +1,3 @@
-
-
-var charSetLower = "abcdefghijklmnopqrstuvwxyz";
-var charSetUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-var charSetNumbers = "0123456789";
-var charSetSpecial = "!\"#$%&'()*+,-./:;<=>?@[";
-
 function createPassword() {
     var passwordLength = prompt("How long do you want your password to be?", "8");
 
@@ -19,27 +12,35 @@ function createPassword() {
         var specialCharPrompt = confirm("Would you like to include special characters in your password?");
         
         var charSets = [
-            ["abcdefghijklmnopqrstuvwxyz", lowercaseCharPrompt],
-            ["ABCDEFGHIJKLMNOPQRSTUVWXYZ", uppercaseCharPrompt],
-            ["0123456789", numbersCharPrompt],
-            ["!\"#$%&'()*+,-./:;<=>?@[", specialCharPrompt],
+            [lowercaseCharPrompt, "abcdefghijklmnopqrstuvwxyz"],
+            [uppercaseCharPrompt, "ABCDEFGHIJKLMNOPQRSTUVWXYZ"],
+            [numbersCharPrompt, "0123456789"],
+            [specialCharPrompt, "!\"#$%&'()*+,-./:;<=>?@["],
         ]
         
         var charSetString = "";
         var password = "";
         
         charSets.forEach(function(charSet) {
-            if (charSet[1] === true) {
-                charSetString += charSet[0];
+            if (charSet[0] === true) {
+                charSetString += charSet[1];
             }
         });
+        
+        validateUserSelection(charSetString);
+
 
         for (var i = 0; i <= passwordLength; i++) {
             password = password + charSetString.charAt(Math.floor(Math.random() * passwordLength));
-            console.log(i);
         }
 
         window.document.getElementById("textArea").innerHTML = password;
+    }
+
+    function validateUserSelection(charSet) {
+        if (charSet.length === 0) {
+            alert("Please make at least one selection to generate a password");
+        }
     }
 };
  
