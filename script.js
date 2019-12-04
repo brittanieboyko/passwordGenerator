@@ -1,6 +1,6 @@
 var generatePasswordEl = document.querySelector(".genPasswordButton");
 var passwordLength;
-var charSetString;
+var charSetString = "";
 
 function getPasswordLength() {
     passwordLength = parseInt(prompt("How long do you want your password to be?", "8"));
@@ -46,6 +46,7 @@ function validateUserSelection() {
         alert("Please make at least one selection to generate a password");
     } else {
         createPassword(charSetString);
+        charSetString = "";
     }    
 };
 
