@@ -6,7 +6,6 @@ var charSetString = "";
 
 function getPasswordLength() {
     passwordLength = parseInt(prompt("How long do you want your password to be?", "8"));
-    
     validatePasswordPrompt(passwordLength);
 };
 
@@ -55,12 +54,10 @@ function validateUserSelection() {
 function createPassword() {
     password = "";
 
-    for (var i = 0; i <= passwordLength; i++) {
-        password = password + charSetString.charAt(Math.floor(Math.random() * passwordLength));
+    for (var i = 0; i < passwordLength; i++) {
+        password = password + charSetString.charAt(Math.floor(Math.random() * charSetString.length));
     }
-
     textAreaEl.innerHTML = password;
-
 };
 
 function copyPassword() {
