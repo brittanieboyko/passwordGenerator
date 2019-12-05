@@ -8,7 +8,8 @@ Behold my Password Generator!
 * My Password Generator will generate a random password for you based on your chosen criteria.
 
 ## How To Use
-* Simply press the 'Generate Password' button and follow the prompts to chose your preferences.
+* Simply press the 'Generate Password' button and follow the prompts to select your preferences.
+* One your password has been generated, conveniently copy your password by selecting the 'Copy to Clipboard' button.
 
 ## Domains
 * This website is currently being hosted on Github Pages at [https://brittanieboyko.github.io/passwordGenerator/]
