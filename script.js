@@ -1,22 +1,21 @@
 var generatePasswordEl = document.querySelector("#genPasswordButton");
 var textAreaEl = document.querySelector("#textArea");
-var copyToClipEl = document.querySelector("#copyToClipButton")
-var passwordLength;
+var copyToClipEl = document.querySelector("#copyToClipButton");
+var passwordLength = 0;
 var charSetString = "";
 
 function getPasswordLength() {
-    passwordLength = parseInt(prompt("How long do you want your password to be?", "8"));
+    passwordLength = prompt("Enter a password length", "8");
     validatePasswordPrompt(passwordLength);
 };
 
-function validatePasswordPrompt(number){
-    if (number <= 128 && number >= 8) {
+function validatePasswordPrompt(length){
+    if (length <= 128 && length >= 8 && length % 1 === 0) {
         determineCharacterSet();
-    } else if (isNaN(number)) {
+    } else if (isNaN(length)) {
         alert("Please enter a valid number");
     } else {
-        alert("Please enter a number from 8 to 128");
-        getPasswordLength();
+        alert("Please enter a whole number from 8 to 128");
    }
 };
 
@@ -25,15 +24,14 @@ function determineCharacterSet() {
     var uppercaseCharPrompt = confirm("Would you like to include uppercase characters in your password?");
     var numbersCharPrompt = confirm("Would you like to include numbers characters in your password?");
     var specialCharPrompt = confirm("Would you like to include special characters in your password?");
-    
     var charSets = [
         [lowercaseCharPrompt, "abcdefghijklmnopqrstuvwxyz"],
         [uppercaseCharPrompt, "ABCDEFGHIJKLMNOPQRSTUVWXYZ"],
         [numbersCharPrompt, "0123456789"],
-        [specialCharPrompt, "!\"#$%&'()*+,-./:;<=>?@["],
-    ]
-    
-    charSets.forEach(function(charSet) {
+        [specialCharPrompt, "!\"#$%&'()*+,-./:;<=>?@["]
+    ];
+
+    charSets.forEach(function (charSet) {
         if (charSet[0] === true) {
             charSetString = charSetString + charSet[1];
         }
@@ -48,7 +46,7 @@ function validateUserSelection() {
     } else {
         createPassword(charSetString);
         charSetString = "";
-    }    
+    }
 };
 
 function createPassword() {
