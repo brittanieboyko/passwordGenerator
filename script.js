@@ -62,7 +62,7 @@ function copyPassword() {
     textAreaEl.select();
     textAreaEl.setSelectionRange(0, 99999)
     document.execCommand("copy");
-  }
+};
 
 generatePasswordEl.addEventListener("click", getPasswordLength);
 copyToClipEl.addEventListener("click", copyPassword);
