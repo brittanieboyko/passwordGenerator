@@ -1,8 +1,8 @@
 # passwordGenerator
 
-brittanieboyko.github.io
-======
 Behold my Password Generator!
+
+![Password Generator](assets/passGenScreenshot.png)
 
 
 ## Domains
